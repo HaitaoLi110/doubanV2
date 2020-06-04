@@ -1,7 +1,7 @@
 <template>
   <div class="subject-view has-header">
     <banner title="聊聊你的观影感受"></banner>
-    <template v-if="!showLoading">
+   <template v-if="!showLoading">
       <div class="subject-card">
         <h1 class="title">{{subject.title}}</h1>
         <div class="subject-info">
@@ -99,6 +99,7 @@
       <scroller title="推荐的豆列" type="onlyString" :items="movieTags"></scroller>
       <download-app></download-app>
     </template>
+
     <loading v-show="showLoading"></loading>
   </div>
 </template>

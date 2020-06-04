@@ -92,7 +92,23 @@ const actions = {
           break
         case 'book':
           request
-            .get('https://api.douban.com/v2/' + payload.classify +
+            .get('https://douban.uieee.com/v2/' + payload.classify +
+              '/' + payload.id)
+            .use(jsonp)
+            .end((err, res) => {
+              if (!err) {
+                commit({
+                  type: 'getSingleSubject',
+                  classify: payload.classify,
+                  res: res.body
+                })
+                resolve(res)
+              }
+            })
+          break
+        case 'music':
+          request
+            .get('https://douban.uieee.com/v2/' + payload.classify +
               '/' + payload.id)
             .use(jsonp)
             .end((err, res) => {

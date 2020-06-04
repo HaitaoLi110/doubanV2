@@ -11,13 +11,13 @@
       </form>
     </div>
     <div v-if="queryStr" class="search-res">
-      <group title="影视" :items="queryRes_movie">
+      <group title="影视" :items="queryRes_music" :types=arr[0]>
         <a class="list-link" href="#" slot="more">查看更多影视结果</a>
       </group>
-      <group title="图书" :items="queryRes_movie">
+      <group title="图书" :items="queryRes_book" :types=arr[1]>
         <a class="list-link" href="#" slot="more">查看更多图书结果</a>
       </group>
-      <group title="音乐" :items="queryRes_movie">
+      <group title="音乐" :items="queryRes_music" :types=arr[2]>
         <a class="list-link" href="#" slot="more">查看更多音乐结果</a>
       </group>
     </div>
@@ -34,16 +34,17 @@ export default {
   components: { Group },
   data () {
     return {
-      queryStr: ''
+      queryStr: '',
+      arr: ['movie', 'book', 'music']
     }
   },
   computed: {
     // Getting Vuex State from store/modules/search
     ...mapState({
-      queryRes_movie: state => state.search.queryRes_movie
+      // queryRes_movie: state => state.search.queryRes_movie
       // API rate limit exceeded
-      // queryRes_book: state => state.search.queryRes_book,
-      // queryRes_music: state => state.search.queryRes_music
+      queryRes_book: state => state.search.queryRes_book,
+      queryRes_music: state => state.search.queryRes_music
     })
   },
   methods: {

@@ -7,10 +7,11 @@
       <li v-for="item in items">
         <router-link
           :to="{name: 'SubjectView',
-          params: {classify: item.subtype ? item.subtype : 'book',
+          params: {classify: types ? types : 'book',
           id: item.id}}">
           <div class="group-meta">
-            <img v-if="item.images.small" :src="item.images.small" alt="cover">
+            <img v-if="item.images" :src="item.images.small" alt="cover">
+             <img  v-else-if="item.image" :src="item.image" alt="cover">
             <div class="group-info">
               <span>{{item.title}}</span>
               <rating v-if="item.rating" :rating="item.rating"></rating>
@@ -42,6 +43,9 @@ export default {
     items: {
       type: Array,
       required: true
+    },
+    types: {
+      type: String
     }
   },
   data () {

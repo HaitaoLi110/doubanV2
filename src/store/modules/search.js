@@ -33,15 +33,15 @@ const actions = {
    */
   query ({ commit }, payload) {
     request
-      .get('https://api.douban.com/v2/movie/search?q=' +
+      .get('https://api.douban.com/v2/music/search?q=' +
         payload.queryStr + '&count=3')
       .use(jsonp)
       .end((err, res) => {
         if (!err) {
           commit({
             type: 'query',
-            tag: 'movie',
-            res: res.body.subjects
+            tag: 'music',
+            res: res.body.musics
           })
         }
       })
@@ -52,19 +52,19 @@ const actions = {
      */
 
     // Getting book
-    // request
-    //   .get('https://api.douban.com/v2/book/search?q=' +
-    //     payload.queryStr + '&count=3')
-    //   .use(jsonp)
-    //   .end((err, res) => {
-    //     if (!err) {
-    //       commit({
-    //         type: 'query',
-    //         tag: 'book',
-    //         res: res.body
-    //       })
-    //     }
-    //   })
+    request
+      .get('https://douban.uieee.com/v2/book/search?q=' +
+        payload.queryStr + '&count=3')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'query',
+            tag: 'book',
+            res: res.body.books
+          })
+        }
+      })
 
     // Getting music
     // request
